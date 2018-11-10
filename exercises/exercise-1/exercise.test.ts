@@ -217,6 +217,7 @@ test("function types", () => {
    * this value": Remove the curly braces and the "return".
    */
   let shorthandFunction = (x: number) => x;
+  let shorthandFunctionAlt = (x: number) => { return x; }
 
   /*
    * Note that if you're using this style to return an object,
@@ -404,46 +405,46 @@ test("supersets and structural compatibility", () => {
 });
 
 // /**************************************************************************/
-// test("Writing our own types", () => {
-//   /*
-//    * ======================================================
-//    * TODO: Update FixThisType to allow strings only.
-//    * ======================================================*/
-//   type FixThisType = any;
-//   let jaime: FixThisType = "Jaime"
-//   let meredith: FixThisType = "Meredith"
-//   // typings:expect-error
-//   let no: FixThisType = false;
-// })
+test("Writing our own types", () => {
+  /*
+   * ======================================================
+   * TODO done: Update FixThisType to allow strings only.
+   * ======================================================*/
+  type FixThisType = string;
+  let jaime: FixThisType = "Jaime"
+  let meredith: FixThisType = "Meredith"
+  // typings:expect-error
+  let no: FixThisType = false;
+})
 // /**************************************************************************/
 
 // /**************************************************************************/
-// test("Writing some object types", () => {
-//   /*
-//    * ======================================================
-//    * TODO: Update FixThisOneToo to allow objects with a kind
-//    * and a disposition.
-//    * ======================================================*/
-//   type FixThisOneToo = any;
-//   let nellie: FixThisOneToo = { kind: "dog", disposition: "good" }
-//   let roxy: FixThisOneToo = { kind: "dog", disposition: "aloof" }
-//   // typings:expect-error
-//   let friday: FixThisOneToo = { kind: "cat", fluffy: "very" }
-//   // typings:expect-error
-//   let cauchy: FixThisOneToo = { kind: "cat", fluffy: "not really" }
-// })
+test("Writing some object types", () => {
+  /*
+   * ======================================================
+   * TODO done: Update FixThisOneToo to allow objects with a kind
+   * and a disposition.
+   * ======================================================*/
+  type FixThisOneToo = {kind: string, disposition: string};
+  let nellie: FixThisOneToo = { kind: "dog", disposition: "good" }
+  let roxy: FixThisOneToo = { kind: "dog", disposition: "aloof" }
+  // typings:expect-error
+  let friday: FixThisOneToo = { kind: "cat", fluffy: "very" }
+  // typings:expect-error
+  let cauchy: FixThisOneToo = { kind: "cat", fluffy: "not really" }
+})
 // /**************************************************************************/
 
 // /**************************************************************************/
-// test("Writing some function types", ()=>{
-//   /*
-//    * ======================================================
-//    * TODO: Update AndThisOne to allow a function that takes
-//    * a string and returns a string.
-//    * ======================================================*/
-//   type AndThisOne = any;
-//   let sayHello: AndThisOne = (name: string) => { return `Hello, ${name}.`}
-//   let sayGoodbye: AndThisOne = (name: string) => { return `Goodbye, ${name}.`}
-//   // typings:expect-error
-//   let isFido: AndThisOne = (name: string) => { return name === "Fido"};
-// })
+test("Writing some function types", ()=>{
+  /*
+   * ======================================================
+   * TODO done: Update AndThisOne to allow a function that takes
+   * a string and returns a string.
+   * ======================================================*/
+  type AndThisOne = (name: string) => string;
+  let sayHello: AndThisOne = (name: string) => { return `Hello, ${name}.`}
+  let sayGoodbye: AndThisOne = (name: string) => { return `Goodbye, ${name}.`}
+  // typings:expect-error
+  let isFido: AndThisOne = (name: string) => { return name === "Fido"};
+})

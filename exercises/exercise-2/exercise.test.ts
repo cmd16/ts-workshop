@@ -39,177 +39,180 @@ test("literals in control flow", () => {
 });
 
 // /**************************************************************************/
-// test("describes a literal", () => {
+test("describes a literal", () => {
 //   /*
 //    * ======================================================
 //    * TODO: Update FixThisType to allow only a single literal.
 //    * ======================================================*/
-//   type FixThisType = string;
+  type FixThisType = "hello";
 
-//   let hello: FixThisType = "hello";
+  let hello: FixThisType = "hello";
 
-//   // typings:expect-error
-//   let world: FixThisType = "world";
+  // typings:expect-error
+  let world: FixThisType = "world";
 
-//   // typings:expect-error
-//   let goodnight: FixThisType = "goodnight";
+  // typings:expect-error
+  let goodnight: FixThisType = "goodnight";
 
-//   // typings:expect-error
-//   let moon: FixThisType = "moon";
-// });
+  // typings:expect-error
+  let moon: FixThisType = "moon";
+});
 // /**************************************************************************/
 
 // /**************************************************************************/
-// test("manually creating union types", () => {
+test("manually creating union types", () => {
 //   /*
 //    * We can describe union types ourselves, and
 //    * we can union together any valid types.
 //    * ======================================================
 //    * TODO: Update FixThisType to allow strings or numbers.
 //    * ======================================================*/
-//   type FixThisType = any;
+  type FixThisType = string | number;
 
-//   let aString: FixThisType = "hello";
-//   let anotherString: FixThisType = "world";
-//   let aNumber: FixThisType = 2;
-//   let anotherNumber: FixThisType = 4;
+  let aString: FixThisType = "hello";
+  let anotherString: FixThisType = "world";
+  let aNumber: FixThisType = 2;
+  let anotherNumber: FixThisType = 4;
 
-//   // typings:expect-error
-//   let aBool: FixThisType = true;
-// });
+  // typings:expect-error
+  let aBool: FixThisType = true;
+});
 // /**************************************************************************/
 
 // /**************************************************************************/
-// test("this allows us to constrain types in interesting ways", () => {
+test("this allows us to constrain types in interesting ways", () => {
 //   /*
 //    * Being able to union together any valid types means
 //    * literals, too.
 //    * ======================================================
 //    * TODO: Update FixThisType to make this type test pass.
 //    * ======================================================*/
-//   type FixThisType = any;
+  type FixThisType = true | "this string";
 
-//   let aTrue: FixThisType = true;
+  let aTrue: FixThisType = true;
 
-//   let aString: FixThisType = "this string";
+  let aString: FixThisType = "this string";
 
-//   // typings:expect-error
-//   let someOtherString: FixThisType = "not that string";
-//   // typings:expect-error
-//   let aNull: FixThisType = null;
-//   // typings:expect-error
-//   let aFalse: FixThisType = false;
-// });
+  // typings:expect-error
+  let someOtherString: FixThisType = "not that string";
+  // typings:expect-error
+  let aNull: FixThisType = null;
+  // typings:expect-error
+  let aFalse: FixThisType = false;
+});
 // /**************************************************************************/
 
 // /**************************************************************************/
-// test("unions can be between types of any shape", () => {
+test("unions can be between types of any shape", () => {
 //   /*
 //    * ======================================================
 //    * TODO: Update Earthlings to allow these values:
 //    * ======================================================*/
-//   type Earthlings = {};
-//   let dog: Earthlings = { type: "animal", name: "Fido" };
-//   let cat: Earthlings = { type: "animal", name: "Suki" };
-//   let zucchini: Earthlings = {
-//     type: "vegetable",
-//     name: "Zucchini"
-//   };
-//   let rose: Earthlings = { type: "vegetable", name: "Rose" };
-//   let quartz: Earthlings = { type: "mineral", name: "Quartz" };
-//   let diamond: Earthlings = { type: "mineral", name: "Diamond" };
+  type Earthlings = {type: "animal" | "vegetable" | "mineral", name: string};
+  let dog: Earthlings = { type: "animal", name: "Fido" };
+  let cat: Earthlings = { type: "animal", name: "Suki" };
+  let zucchini: Earthlings = {
+    type: "vegetable",
+    name: "Zucchini"
+  };
+  let rose: Earthlings = { type: "vegetable", name: "Rose" };
+  let quartz: Earthlings = { type: "mineral", name: "Quartz" };
+  let diamond: Earthlings = { type: "mineral", name: "Diamond" };
 
-//   /* typings:expect-error */
-//   const invalidEarthling: Earthlings = { type: "martian", name: "Quux" }
-//   /* typings:expect-error */
-//   const invalidEarthling2: Earthlings = { type: "plutonian" }
+  /* typings:expect-error */
+  const invalidEarthling: Earthlings = { type: "martian", name: "Quux" }
+  /* typings:expect-error */
+  const invalidEarthling2: Earthlings = { type: "plutonian" }
 
 //   /*
 //    * ======================================================
 //    * TODO: Update Aliens to allow these values:
 //    * ======================================================*/
-//   type Aliens = {};
+  type Aliens = { homePlanet: string, phaser: boolean };
 
-//   let alienBlaxnor: Aliens = {
-//     homePlanet: "Jupiter",
-//     phaser: true
-//   };
-//   let alienXanter: Aliens = {
-//     homePlanet: "Mars",
-//     phaser: false
-//   };
+  let alienBlaxnor: Aliens = {
+    homePlanet: "Jupiter",
+    phaser: true
+  };
+  let alienXanter: Aliens = {
+    homePlanet: "Mars",
+    phaser: false
+  };
 
 //   /*
 //    * ======================================================
 //    * TODO: Confirm that EarthlingsAndAliens disallows these types
 //    * ======================================================*/
-//   type EarthlingsAndAliens = Earthlings & Aliens;
-//   // typings:expect-error
-//   let star: EarthlingsAndAliens = "Sirius";
+  type EarthlingsAndAliens = Earthlings & Aliens;
+  // typings:expect-error
+  let star: EarthlingsAndAliens = "Sirius";
 
-//   // typings:expect-error
-//   let galaxy: EarthlingsAndAliens = {
-//     type: "LocalGalaxy",
-//     name: "Milky Way"
-//   };
+  // typings:expect-error
+  let galaxy: EarthlingsAndAliens = {
+    type: "LocalGalaxy",
+    name: "Milky Way"
+  };
 
-//   // typings:expect-error
-//   let asteroid: EarthlingsAndAliens = {
-//     homePlanet: false,
-//     name: "Asteroid"
-//   };
-// });
+  // typings:expect-error
+  let asteroid: EarthlingsAndAliens = {
+    homePlanet: false,
+    name: "Asteroid"
+  };
+});
 // /**************************************************************************/
 
 // /**************************************************************************/
-// test("basic intersection", () => {
+test("basic intersection", () => {
 //   /*
 //    * Intersections allow us to combine type definitions to
 //    * create a single type with all the attributes of both types.
 //    * This is useful when we have some set of properties that are
 //    * shared among many different types. */
-//   type Cat = {
-//     animalType: "cat";
-//     breedName: string;
-//     coloration: "tabby" | "solid-colored" | "spotted";
-//   };
-//   type Dog = {
-//     animalType: "dog";
-//     breedName: string;
-//     size: "teacup" | "toy" | "standard" | "huge";
-//   };
-//   type PetInfo = { name: string; familyName: string };
+  type Cat = {
+    animalType: "cat";
+    breedName: string;
+    coloration: "tabby" | "solid-colored" | "spotted";
+  };
+  type Dog = {
+    animalType: "dog";
+    breedName: string;
+    size: "teacup" | "toy" | "standard" | "huge";
+  };
+  type PetInfo = { name: string; familyName: string };
 
-//   type PetCat = PetInfo & Cat;
-//   type PetDog = PetInfo & Dog;
+  type PetCat = PetInfo & Cat;
+  type PetDog = PetInfo & Dog;
 
-//   /*
-//    * ======================================================
-//    * TODO: Describe a valid PetCat and PetDog below.
-//    * HINT: Use autocompletion to help you fill in the properties.
-//    * ======================================================*/
-//   const sukiTheCat: PetCat = {};
-//   const finnTheDog: PetDog = {};
+  /*
+   * ======================================================
+   * TODO: Describe a valid PetCat and PetDog below.
+   * HINT: Use autocompletion to help you fill in the properties.
+   * ======================================================*/
+  // question: why do I still need to give animalType
+  const sukiTheCat: PetCat = {animalType: "cat", breedName: "cute",
+  coloration: "tabby", name: "suki", familyName: "DeJager"}; 
+  const finnTheDog: PetDog = {animalType: "dog", breedName: "fluffy",
+  size: "toy", name: "finn", familyName: "Smith"};
 
-//   function announcePet(pet: PetInfo) {
-//     return `This is ${pet.familyName} family pet, ${pet.name}.`;
-//   }
+  function announcePet(pet: PetInfo) {
+    return `This is ${pet.familyName} family pet, ${pet.name}.`;
+  }
 
 //   /*
 //    * Notice that announcePet will take any object that's
 //    * structurally compatible with type Pet. */
-//   announcePet(sukiTheCat);
-//   announcePet(finnTheDog);
-// });
+  announcePet(sukiTheCat);
+  announcePet(finnTheDog);
+});
 // /**************************************************************************/
 
 // /**************************************************************************/
-// test("type narrowing and exhaustiveness", () => {
-//   function classify(n: number) {
-//     if (n < 0) return "negative";
-//     if (n > 0) return "positive";
-//     return "zero";
-//   }
+test("type narrowing and exhaustiveness", () => {
+  function classify(n: number) {
+    if (n < 0) return "negative";
+    if (n > 0) return "positive";
+    return "zero";
+  }
 
 //   /*
 //    * TS can narrow types as we move through control flow.
@@ -219,36 +222,36 @@ test("literals in control flow", () => {
 //    * TODO: Try commenting out one of the return statements in
 //    *       describeNumber and see what happens.
 //    * ======================================================*/
-//   function describeNumber(num: number): string {
-//     const value = classify(3);
+  function describeNumber(num: number): string {
+    const value = classify(3);
 
-//     if (value === "negative") {
-//       value;
-//       return `${num} is a negative number`;
-//     } else if (value === "positive") {
-//       value;
-//       return `${num} is a positive number`;
-//     } else {
-//       value;
-//       return `${num} is zero`;
-//     }
-//   }
+    if (value === "negative") {
+      value;
+      return `${num} is a negative number`;
+    } else if (value === "positive") {
+      value;
+      return `${num} is a positive number`;
+    } else {
+      value;
+      return `${num} is zero`;
+    }
+  }
 
 //   /*
 //    * ======================================================
 //    * TODO: Change ONLY the input FruitColor to prove that the
 //    * function below will always return one of these two strings.
 //    * ======================================================*/
-//   type FruitColor = string;
+  type FruitColor = "red" | "yellow";
 
-//   function appleOrBanana(fruitColor: FruitColor): "apple" | "banana" {
-//     switch (fruitColor) {
-//       case "red":
-//         return "apple";
-//       case "yellow":
-//         return "banana";
-//     }
-//   }
+  function appleOrBanana(fruitColor: FruitColor): "apple" | "banana" {
+    switch (fruitColor) {
+      case "red":
+        return "apple";
+      case "yellow":
+        return "banana";
+    }
+  }
 
 //   /*
 //    * So, if we carefully constrain our input and output types,
@@ -258,26 +261,26 @@ test("literals in control flow", () => {
 //    * and TypeScript proves that our constraints are met throughout
 //    * the codebase.
 //    */
-// });
+});
 // /**************************************************************************/
 
 // /**************************************************************************/
-// test("working with discriminated unions", () => {
-//   /*
-//    * Let's take a look at the HotDrink type described in the slides.
-//    */
-//   type Tea = {
-//     type: "tea"; // Discriminant field
-//     style: "green" | "black" | "herbal";
-//     name: string;
-//   };
-//   type Coffee = {
-//     type: "coffee"; // Discriminant field
-//     roast: "dark" | "medium" | "light";
-//     name: string;
-//   };
+test("working with discriminated unions", () => {
+  /*
+   * Let's take a look at the HotDrink type described in the slides.
+   */
+  type Tea = {
+    type: "tea"; // Discriminant field
+    style: "green" | "black" | "herbal";
+    name: string;
+  };
+  type Coffee = {
+    type: "coffee"; // Discriminant field
+    roast: "dark" | "medium" | "light";
+    name: string;
+  };
 
-//   type HotDrink = Tea | Coffee;
+  type HotDrink = Tea | Coffee;
 
 //   /*
 //    * ======================================================
@@ -285,20 +288,27 @@ test("literals in control flow", () => {
 //    * returns the style, for tea, or the roast, for coffee.
 //    * ======================================================
 //    */
-//   function describe(
-//     drink: HotDrink
-//   ): "green" | "black" | "herbal" | "dark" | "medium" | "light" {}
+  function describe(
+    drink: HotDrink
+  ): "green" | "black" | "herbal" | "dark" | "medium" | "light" {
+    if (drink.type === "tea") {
+      return drink.style
+    }
+    else {  // question: is this better as an if or an else if?
+      return drink.roast;
+    }
+  }
 
-//   const rachaelsDrink: Tea = {name: "Chamomile", style: "herbal", type: "tea"}
-//   const drewsDrink: Coffee = {name: "Sparrows Blend", roast: "light", type: "coffee"}
+  const rachaelsDrink: Tea = {name: "Chamomile", style: "herbal", type: "tea"}
+  const drewsDrink: Coffee = {name: "Sparrows Blend", roast: "light", type: "coffee"}
 
-//   expect(describe(rachaelsDrink)).toEqual("herbal");
-//   expect(describe(drewsDrink)).toEqual("light");
-// });
+  expect(describe(rachaelsDrink)).toEqual("herbal");
+  expect(describe(drewsDrink)).toEqual("light");
+});
 // /**************************************************************************/
 
 // /**************************************************************************/
-// test("build a discriminated union", () => {
+test("build a discriminated union", () => {
 //   /*
 //    * TS can narrow types as we move through control flow. When
 //    * we're handling different cases of a union type, it's helpful
@@ -315,62 +325,78 @@ test("literals in control flow", () => {
 //    * and bananas are yellow and can be peeled.
 //    * ======================================================
 //    */
-//   type FruitType = any;
+  type Apple = {
+    type: "apple";
+    color: "red";
+    // polish: () => { return color}; // question: how would I do this?
+  }
+  
 
-//   function doSomething(fruit: FruitType) {
-//     switch (fruit.type) {
-//       case "apple":
-//         // NOTE: typeof fruit is the type representing the type of the fruit variable.
-//         // We'll be using this to check that variables are inferred to the right type.
+  function polish(item: Apple) {
+    return item;
+  }
 
-//         // Assert that fruit is statically known to have the color "red"
-//         type _t1 = AssertAssignable<{ color: "red" }, typeof fruit>;
-//         // typings:expect-error
-//         type _t2 = AssertAssignable<{ color: "yellow" }, typeof fruit>;
+  type Banana = {
+    type: "banana";
+    color: "yellow";
+  }
+  
+  type FruitType = {type: "apple", color: "red", polish(): string} | {type: "banana", color: "yellow", peel(): string};
 
-//         fruit.polish();
-//         // typings:expect-error
-//         fruit.peel();
-//         break;
-//       case "banana":
-//         fruit;
-//         type _t3 = AssertAssignable<{ color: "yellow" }, typeof fruit>;
-//         // typings:expect-error
-//         type _t4 = AssertAssignable<{ color: "red" }, typeof fruit>;
+  function doSomething(fruit: FruitType) {
+    switch (fruit.type) {
+      case "apple":
+        // NOTE: typeof fruit is the type representing the type of the fruit variable.
+        // We'll be using this to check that variables are inferred to the right type.
 
-//         fruit.peel();
-//         // typings:expect-error
-//         fruit.polish();
-//         break;
-//     }
-//   }
-// });
+        // Assert that fruit is statically known to have the color "red"
+        type _t1 = AssertAssignable<{ color: "red" }, typeof fruit>;
+        // typings:expect-error
+        type _t2 = AssertAssignable<{ color: "yellow" }, typeof fruit>;
+
+        fruit.polish();
+        // typings:expect-error
+        fruit.peel();
+        break;
+      case "banana":
+        fruit;
+        type _t3 = AssertAssignable<{ color: "yellow" }, typeof fruit>;
+        // typings:expect-error
+        type _t4 = AssertAssignable<{ color: "red" }, typeof fruit>;
+
+        fruit.peel();
+        // typings:expect-error
+        fruit.polish();
+        break;
+    }
+  }
+});
 // /**************************************************************************/
 
 // /**************************************************************************/
-// test("unions & intersections", () => {
-//   /*
-//    * Unions and intersections can be combined to make complex types.
-//    * Let's revisit our pet types.
-//    */
-//   type Cat = {
-//     animalType: "cat";
-//     breedName: string;
-//     coloration: "tabby" | "solid-colored" | "spotted";
-//   };
-//   type Dog = {
-//     animalType: "dog";
-//     breedName: string;
-//     size: "teacup" | "toy" | "standard" | "huge";
-//   };
-//   type PetInfo = { name: string; familyName: string };
+test("unions & intersections", () => {
+  /*
+   * Unions and intersections can be combined to make complex types.
+   * Let's revisit our pet types.
+   */
+  type Cat = {
+    animalType: "cat";
+    breedName: string;
+    coloration: "tabby" | "solid-colored" | "spotted";
+  };
+  type Dog = {
+    animalType: "dog";
+    breedName: string;
+    size: "teacup" | "toy" | "standard" | "huge";
+  };
+  type PetInfo = { name: string; familyName: string };
 
 //   /*
 //    * ======================================================
 //    * TODO: Write a type that describes both pet cats and pet dogs.
 //    * ======================================================
 //    */
-//   type Pet = any;
+  type Pet = PetInfo & (Cat | Dog);
 
 //   /*
 //    * What if we want to be able to announce cats and dogs in more detail?
@@ -379,33 +405,44 @@ test("literals in control flow", () => {
 //    * them in detail. Use the tests below to drive your implementation.
 //    * ======================================================
 //    */
-//   function announcePetDetail(pet: Pet) {}
+  function announcePetDetail(pet: Pet) {
+    // valid and readable, but not my favorite
+    // let other_prop: string;
+    // if (pet.animalType === "cat") {
+    //   other_prop = pet.coloration;
+    // }
+    // else {
+    //   other_prop = pet.size;
+    // }
+    const other_prop = pet.animalType === "cat" ? pet.coloration : pet.size;  // could stick inside the line if I want to
+    return `This is the ${pet.familyName} family ${pet.animalType}, ${pet.name} the ${other_prop} ${pet.breedName}.`;
+  }
 
-//   expect(
-//     announcePetDetail({
-//       animalType: "cat",
-//       breedName: "American Shorthair",
-//       coloration: "tabby",
-//       name: "Isabow",
-//       familyName: "Robb"
-//     })
-//   ).toEqual(
-//     "This is the Robb family cat, Isabow the tabby American Shorthair."
-//   );
-//   expect(
-//     announcePetDetail({
-//       animalType: "dog",
-//       breedName: "Pitbull",
-//       size: "standard",
-//       name: "Stella",
-//       familyName: "Brockett"
-//     })
-//   ).toEqual("This is the Brockett family dog, Stella the standard Pitbull.");
+  expect(
+    announcePetDetail({
+      animalType: "cat",
+      breedName: "American Shorthair",
+      coloration: "tabby",
+      name: "Isabow",
+      familyName: "Robb"
+    })
+  ).toEqual(
+    "This is the Robb family cat, Isabow the tabby American Shorthair."
+  );
+  expect(
+    announcePetDetail({
+      animalType: "dog",
+      breedName: "Pitbull",
+      size: "standard",
+      name: "Stella",
+      familyName: "Brockett"
+    })
+  ).toEqual("This is the Brockett family dog, Stella the standard Pitbull.");
 
-//   /* Extra credit: Find a different way to describe your Pet type. */
-//   type AltPet = any;
+  /* Extra credit: Find a different way to describe your Pet type. */
+  type AltPet = any;
 
-//   type _t1 = AssertAssignable<AltPet, Pet>;
-//   type _t2 = AssertAssignable<Pet, AltPet>;
-// });
+  type _t1 = AssertAssignable<AltPet, Pet>;
+  type _t2 = AssertAssignable<Pet, AltPet>;
+});
 // /**************************************************************************/
